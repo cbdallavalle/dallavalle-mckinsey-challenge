@@ -3,22 +3,42 @@ export const calendarData = {
   weekday: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
   mockEvents: [
     {
-      date: 
+      date: "03/12",
       start: '8:30am',
       end: '9:30am'
     }
   ],
-  Holidays: [
-    { "03/11": "Daylight Savings" },
-    { "03/17": "St. Patrick's Day" },
-    { "03/25": "Palm Sunday" },
-    { "03/30": "Good Friday" },
-    { "03/31": "Passover" }, 
-    { "04/01": "April Fools Day"},
-    { "04/01": "Easter"},
-    { "04/08": "Orthodox Easter"},
-    { "04/17": "Tax Day"},
-    { "04/22": "Earth Day"}
+  holidays: [
+    { date: "03/11",
+      name: "Daylight Savings" 
+    },
+    { date: "03/17",
+      name: "St. Patrick's Day" 
+    },
+    { date: "03/25",
+      name: "Palm Sunday" 
+    },
+    { date: "03/30",
+      name: "Good Friday" 
+    },
+    { date: "03/31",
+      name: "Passover" 
+    }, 
+    { date: "04/01",
+      name: "April Fools Day"
+    },
+    { date: "04/01",
+      name: "Easter"
+    },
+    { date: "04/08",
+      name: "Orthodox Easter"
+    },
+    { date: "04/17",
+      name: "Tax Day"
+    },
+    { date: "04/22",
+      name: "Earth Day"
+    }
   ]
 }
 
