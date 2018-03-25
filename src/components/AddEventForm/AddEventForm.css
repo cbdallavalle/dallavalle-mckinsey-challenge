@@ -1,0 +1,28 @@
+.AddEventForm {
+  position: absolute;
+  bottom: -28px;
+  left: 121px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 150px;
+  border-radius: 5px;
+  background-color: #F0F0F0;
+  text-align: left;
+  z-index: 100;
+}
+
+.AddEventForm select {
+  width: 60px;
+}
+
+.AddEventForm .time-cont {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.AddEventForm .time-cont div {
+  display: flex;
+  flex-direction: column;
+}
