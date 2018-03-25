@@ -7,6 +7,7 @@ class Day extends Component {
     this.state = {
       events: [],
       displayForm: false,
+      displayInfo: false,
       eventName: '',
       startTime: '1',
       startDay: 'am',
@@ -22,13 +23,17 @@ class Day extends Component {
   addEvent = (e) => {
     e.preventDefault();
     const events = this.state.events;
-    const event = {
-      name: this.state.eventName,
-      startTime: `${this.state.startTime}:00 ${this.state.startDay}`,
-      endTime: `${this.state.endTime}:00 ${this.state.endDay}`
-    };
+    if(this.state.eventName !== '') {
+      const event = {
+        name: this.state.eventName,
+        startTime: `${this.state.startTime}:00 ${this.state.startDay}`,
+        endTime: `${this.state.endTime}:00 ${this.state.endDay}`,
+        id: Date.now()
+      };
+
+      events.push(event)  
+    }
     
-    events.push(event)
     this.setState({    
       events,   
       displayForm: false,
@@ -47,6 +52,18 @@ class Day extends Component {
   handleTimeUpdate = (e) => {
     this.setState({ [e.target.name]: e.target.value })
   }
+
+  // displayEventInfo = async(e) => {
+  //   await this.setState({displayForm: false, displayInfo: true})
+  //   const events = this.state.events;
+  //   const foundEvent = events.find( event => {
+  //     return parseInt(e.target.id) === event.id
+  //   });
+  // }
+
+  // displayInfoForm = () => {
+  //   return this.state.displayInfo ? 
+  // }
 
   addForm = () => {
     return this.state.displayForm ?
@@ -123,9 +140,8 @@ class Day extends Component {
 
   render() {
     const holidaysToDisplay = this.props.holidays && this.props.holidays.map( (holiday, index) => (<li className="holidays" key={ index }>{holiday.name}</li>))
-    const events = this.state.events.map( (event, index) => <li className="event" key={ index }>{ event.name }</li>)
+    const events = this.state.events.map( (event, index) => <li className="event" key={ index } id={event.id} onClick={ this.displayEventInfo }><span id={event.id}>{ event.name }</span></li>)
     
-    console.log(this.state)
     return (
       <div 
         className="Day"

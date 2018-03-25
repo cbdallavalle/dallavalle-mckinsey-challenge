@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+.Day h3 {
+  margin: 5px 0 10px 0;
+}
+
 .Day select {
   width: 60px;
 }
@@ -14,6 +18,7 @@
 .Day ul {
   width: 100%;
   padding: 0;
+  margin-left: 2px;
 }
 
 .Day ul li {
@@ -34,6 +39,16 @@
   width: 150px;
   text-align: left;
   z-index: 100;
+}
+
+.Day .event {
+  list-style-type: circle;
+  width: fit-content;
+  margin: 0 0 5px 20px;
+}
+
+.Day .holidays {
+  background-color: #F3D9EF;
 }
 
 .Day .time-cont {
