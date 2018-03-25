@@ -6,58 +6,109 @@ class Day extends Component {
     super();
     this.state = {
       events: [],
-      displayForm: false
+      displayForm: false,
+      eventName: '',
+      startTime: '1',
+      startDay: 'am',
+      endTime: '1',
+      endDay: 'am'
     }
   }
 
-  addEvent = () => {
+  displayEventForm = () => {
     this.setState({ displayForm: true})
+  }
+
+  addEvent = (e) => {
+    e.preventDefault();
+    const events = this.state.events;
+    const event = {
+      name: this.state.eventName,
+      startTime: `${this.state.startTime}:00 ${this.state.startDay}`,
+      endTime: `${this.state.endTime}:00 ${this.state.endDay}`
+    };
+    
+    events.push(event)
+    this.setState({    
+      events,   
+      displayForm: false,
+      eventName: '',
+      startTime: '1',
+      startDay: 'am',
+      endTime: '1',
+      endDay: 'am'
+    });
+  }
+
+  updateEventName = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleTimeUpdate = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   addForm = () => {
     return this.state.displayForm ?
-      <form>
+      <form onSubmit={ this.addEvent }>
         <label htmlFor="event-name">Event name:</label>
-        <input id="event-name" placeholder="Name of Event" />
+        <input 
+          id="event-name" 
+          name="eventName"
+          placeholder="Name of Event" 
+          onChange={ this.updateEventName }
+        />
         <div className="time-cont">
           <div>
             <label htmlFor="event-name">Start:</label>
-            <select name="unit-time">
+            <select 
+              name="startTime" 
+              onChange={ this.handleTimeUpdate } 
+            >
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
-              <option value="4">5</option>
-              <option value="4">6</option>
-              <option value="4">7</option>
-              <option value="4">8</option>
-              <option value="4">9</option>
-              <option value="4">10</option>
-              <option value="4">11</option>
-              <option value="4">12</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
             </select>
-            <select>
+            <select 
+              name="startDay" 
+              onChange={ this.handleTimeUpdate } 
+            >
               <option value="am">am</option>
               <option value="pm">pm</option>
             </select>
           </div>
           <div>
             <label htmlFor="event-name">End:</label>
-              <select name="unit-time">
+              <select 
+                name="endTime"
+                onChange={ this.handleTimeUpdate }
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="4">5</option>
-                <option value="4">6</option>
-                <option value="4">7</option>
-                <option value="4">8</option>
-                <option value="4">9</option>
-                <option value="4">10</option>
-                <option value="4">11</option>
-                <option value="4">12</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
               </select>
-              <select>
+              <select
+                name="endDay"
+                onChange={ this.handleTimeUpdate }
+              >
                 <option value="am">am</option>
                 <option value="pm">pm</option>
               </select>
@@ -74,11 +125,11 @@ class Day extends Component {
     const holidaysToDisplay = this.props.holidays && this.props.holidays.map( (holiday, index) => (<li className="holidays" key={ index }>{holiday.name}</li>))
     const events = this.state.events.map( (event, index) => <li className="event" key={ index }>{ event.name }</li>)
     
-    console.log(this.state.displayForm)
+    console.log(this.state)
     return (
       <div 
         className="Day"
-        onClick={this.addEvent}
+        onClick={ this.displayEventForm }
       >
         <h3>{ this.props.day }</h3>
         <ul>
