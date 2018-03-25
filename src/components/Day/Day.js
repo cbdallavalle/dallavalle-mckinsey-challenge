@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./Day.css";
 
 export const Day = ({ day }) => {
   return (
