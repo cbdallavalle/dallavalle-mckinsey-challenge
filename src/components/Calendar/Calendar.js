@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Calendar.css';
 import { calendarData } from '../../calendarData/calendarData'; 
+import Weekdays from '../Weekdays/Weekdays';
 
 class Calendar extends Component {
   constructor() {
@@ -15,7 +16,6 @@ class Calendar extends Component {
   componentDidMount = async () => {
     await this.determineCurrentMonth();
     await this.determineCurrentYear();
-    await this.getDaysInMonth(this.state.currMonth, this.state.currYear);
   }
 
   determineCurrentYear = () => {
@@ -37,23 +37,7 @@ class Calendar extends Component {
     this.setState({ currMonth });
   }
 
-  getDaysInMonth(month, year) {
-     const date = new Date(year, month, 1);
-     let currDaysInMonth = [];
-     while (date.getMonth() === month) {
-        const dateAllInfo = new Date(date);
-        const dateInfo = {
-          day: dateAllInfo.getDay(),
-          date: dateAllInfo.getDate()
-        }
-        currDaysInMonth.push(dateInfo);
-        date.setDate(date.getDate() + 1);
-     }
-     this.setState({ currDaysInMonth });
-  }
-  
   render() {
-    console.log(this.state)
     return (
       <article className="Calendar">
         <h1>Casey's Calendar</h1>
@@ -70,6 +54,10 @@ class Calendar extends Component {
             onClick={ this.changeMonth }>
           </i>
         </section>
+        <Weekdays 
+          currMonth={ this.state.currMonth }
+          currYear={ this.state.currYear }
+        />
       </article>
     )
   }
