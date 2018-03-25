@@ -57,8 +57,12 @@ class Calendar extends Component {
 
   render() {
     const weekdayColumns = calendarData.weekday.map( (day, index) => (
-      <div className="weekday-column">
+      <div 
+        className="weekday-column" 
+        key={ index }
+      >
         <Weekdays 
+          currMonth={ this.state.currMonth }
           currDaysInMonth={ 
             this.state.currDaysInMonth.filter( day => day.day === index) 
           }

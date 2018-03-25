@@ -7,14 +7,22 @@ import { Day } from '../Day/Day';
 class Weekdays extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currDaysInMonth: [],
-    }
+  }
+
+  getHolidays = (date) => {
+    return calendarData.holidays.filter( event => {
+      const dateOfEvent = event.date.split('/');
+      return ( parseInt(dateOfEvent[0]) - 1) === this.props.currMonth && parseInt(dateOfEvent[1]) === date
+    })
   }
 
   render() {
-    const days = this.props.currDaysInMonth.map( day => (
-      <Day day={day.date} />
+    const days = this.props.currDaysInMonth.map( (day, index) => (
+      <Day 
+        key={ index }
+        day={day.date} 
+        events={ this.getHolidays(day.date) }
+      />
     ))
 
     return (
