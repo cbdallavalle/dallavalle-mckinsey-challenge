@@ -3,3 +3,13 @@
   justify-content: center;
   align-items: center;
 }
+
+.Calendar .weekday-column {
+  box-sizing: border-box;
+  min-width: 120px;
+  width: 12.5%;
+}
+
+.Calendar .dates-container {
+  align-items: flex-start;
+}

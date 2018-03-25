@@ -10,12 +10,14 @@ class Calendar extends Component {
       currYear: 2017,
       currMonth: 0,
       currDaysInMonth: [],
+      currEvents: []
     }
   }
 
   componentDidMount = async () => {
     await this.determineCurrentMonth();
     await this.determineCurrentYear();
+    await this.getDaysInMonth(this.state.currMonth, this.state.currYear);
   }
 
   determineCurrentYear = () => {
@@ -35,9 +37,36 @@ class Calendar extends Component {
     let currMonth = this.state.currMonth;
     direction === "forward" ? currMonth += 1 : currMonth -= 1;
     this.setState({ currMonth });
+    this.getDaysInMonth(currMonth, this.state.currYear)
+  }
+
+  getDaysInMonth = (month, year) => {
+     const date = new Date(year, month, 1);
+     let currDaysInMonth = [];
+     while (date.getMonth() === month) {
+        const dateAllInfo = new Date(date);
+        const dateInfo = {
+          day: dateAllInfo.getDay(),
+          date: dateAllInfo.getDate()
+        }
+        currDaysInMonth.push(dateInfo);
+        date.setDate(date.getDate() + 1);
+     }
+     this.setState({ currDaysInMonth });
   }
 
   render() {
+    const weekdayColumns = calendarData.weekday.map( (day, index) => (
+      <div className="weekday-column">
+        <Weekdays 
+          currDaysInMonth={ 
+            this.state.currDaysInMonth.filter( day => day.day === index) 
+          }
+          day={ day }
+        />
+      </div>
+    ))
+
     return (
       <article className="Calendar">
         <h1>Casey's Calendar</h1>
@@ -54,10 +83,9 @@ class Calendar extends Component {
             onClick={ this.changeMonth }>
           </i>
         </section>
-        <Weekdays 
-          currMonth={ this.state.currMonth }
-          currYear={ this.state.currYear }
-        />
+        <section className="dates-container">
+          { weekdayColumns }
+        </section>
       </article>
     )
   }
