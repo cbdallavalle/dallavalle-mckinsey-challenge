@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Calendar.css';
-import { calendarData } from '../../calendarData/calendarData'; 
 import Weekdays from '../Weekdays/Weekdays';
+import { calendarData } from '../../calendarData/calendarData'; 
+import './Calendar.css';
 
 class Calendar extends Component {
   constructor() {
@@ -25,12 +25,14 @@ class Calendar extends Component {
     const currDay = date.getMonth()
     const currMonth = date.getMonth()
     const currYear = date.getFullYear()
+
     this.setState({ currDay, currMonth, currYear })
   }
 
   changeMonth = ({ target }) => {
     const direction = target.id;
     let currMonth = this.state.currMonth;
+
     direction === "forward" ? currMonth += 1 : currMonth -= 1;
     this.setState({ currMonth });
     this.getDaysInMonth(currMonth, this.state.currYear)
@@ -39,20 +41,23 @@ class Calendar extends Component {
   getDaysInMonth = (month, year) => {
      const date = new Date(year, month, 1);
      let currDaysInMonth = [];
+
      while (date.getMonth() === month) {
         const dateAllInfo = new Date(date);
         const dateInfo = {
           day: dateAllInfo.getDay(),
           date: dateAllInfo.getDate()
         }
+
         currDaysInMonth.push(dateInfo);
         date.setDate(date.getDate() + 1);
      }
+
      this.setState({ currDaysInMonth });
   }
 
-  render() {
-    const weekdayColumns = calendarData.weekday.map( (day, index) => (
+  createWeekdayColumns = () => {
+    return calendarData.weekday.map( (day, index) => (
       <div 
         className="weekday-column" 
         key={ index }
@@ -66,10 +71,12 @@ class Calendar extends Component {
         />
       </div>
     ))
+  }
+
+  render() {
 
     return (
       <article className="Calendar">
-        <h1>Casey's Calendar</h1>
         <section>
           <i 
             className="fas fa-chevron-left" 
@@ -84,7 +91,7 @@ class Calendar extends Component {
           </i>
         </section>
         <section className="dates-container">
-          { weekdayColumns }
+          { this.createWeekdayColumns() }
         </section>
       </article>
     )
