@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Weekdays.css';
 import { calendarData } from '../../calendarData/calendarData'; 
-import { Day } from '../Day/Day';
+import Day from '../Day/Day';
 
 
 class Weekdays extends Component {
@@ -21,7 +21,7 @@ class Weekdays extends Component {
       <Day 
         key={ index }
         day={day.date} 
-        events={ this.getHolidays(day.date) }
+        holidays={ this.getHolidays(day.date) }
       />
     ))
 
