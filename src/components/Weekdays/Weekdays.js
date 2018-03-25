@@ -8,14 +8,14 @@ class Weekdays extends Component {
     super(props);
   }
 
-// displayDays calls this function and passes it the specific date currently
+// displayDays calls function and passes it the specific date currently
   // being mapped over. getHolidays then filters all of the holidays that have a 
   // date matching the date it was passed. 
   getHolidays = (date) => {
     return calendarData.holidays.filter( holiday => {
       const dateOfHoliday = holiday.date.split('/');
-      return ( parseInt(dateOfHoliday[0]) - 1) === this.props.currMonth && parseInt(dateOfHoliday[1]) === date
-    })
+      return ( parseInt(dateOfHoliday[0]) - 1) === this.props.currMonth && parseInt(dateOfHoliday[1]) === date;
+    });
   }
 
 // displayDays maps over all of the days in the month and instantiates a Day component,
