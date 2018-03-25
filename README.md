@@ -1,6 +1,6 @@
 ## Synopsis
 
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+Casey Dallavalle's submission for the Digital McKinsey Coding Challenge.
 
 ## Application Explanation
 
@@ -12,4 +12,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Clone this repo by running this command in the terminal: ```git clone https://github.com/cbdallavalle/dallavalle-mckinsey-challenge.git dallavalle-mckinsey-challenge```. I provided the repo name dallavalle-mckinsey-challenge, but you may change the name to whatever you prefer.
 
-``cd`` into the directory and run ```npm install``
+``cd`` into the directory and run ```npm install```
+
+Lastly, ```npm start``` will start the application on your localhost. 
