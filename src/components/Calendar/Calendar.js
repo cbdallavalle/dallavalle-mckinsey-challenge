@@ -9,27 +9,23 @@ class Calendar extends Component {
     this.state = {
       currYear: 2017,
       currMonth: 0,
+      currDay: 0,
       currDaysInMonth: [],
       currEvents: []
     }
   }
 
   componentDidMount = async () => {
-    await this.determineCurrentMonth();
-    await this.determineCurrentYear();
+    await this.determineDate();
     await this.getDaysInMonth(this.state.currMonth, this.state.currYear);
   }
 
-  determineCurrentYear = () => {
+  determineDate = () => {
     const date = new Date();
-    const currYear = date.getFullYear()
-    this.setState({ currYear })
-  }
-
-  determineCurrentMonth = () => {
-    const date = new Date();
+    const currDay = date.getMonth()
     const currMonth = date.getMonth()
-    this.setState({ currMonth });
+    const currYear = date.getFullYear()
+    this.setState({ currDay, currMonth, currYear })
   }
 
   changeMonth = ({ target }) => {
